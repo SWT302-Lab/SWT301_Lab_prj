@@ -22,7 +22,7 @@ public class AccountDAO extends DBContext {
     private static final Logger LOGGER = Logger.getLogger(AccountDAO.class.getName());
     public String getAccount(String username, String password) {
         String sql = "SELECT role FROM Account WHERE username = ? AND password = ?";
-        try (PreparedStatement st = connection.prepareStatement(sql)) {
+        try (PreparedStatement st = connection.prepareStatement(sql)){
             st.setString(1, username);
             st.setString(2, password);
             try (ResultSet rs = st.executeQuery()) {
