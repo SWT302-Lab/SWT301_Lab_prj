@@ -16,7 +16,7 @@ public class SubOrder {
     public SubOrder() {
     }
 
-    public SubOrder(int tableId, int orderID, int orderDetailId, int dishId, int quantity, int price, String dishName, String status, boolean urgent) {
+    public SubOrder(int tableId, int orderID, int orderDetailId, int dishId, int quantity, int price, String dishName, String status) {
         this.tableId = tableId;
         this.orderID = orderID;
         this.orderDetailId = orderDetailId;

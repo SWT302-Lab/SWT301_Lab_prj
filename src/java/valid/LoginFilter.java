@@ -192,10 +192,10 @@ public class LoginFilter implements Filter {
      */
     public void init(FilterConfig filterConfig) {
         this.filterConfig = filterConfig;
-        if (filterConfig != null) {
-            if (debug) {
+        if (filterConfig != null && debug) {
+
                 log("LoginFilter:Initializing filter");
-            }
+            
         }
     }
 
