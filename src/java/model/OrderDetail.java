@@ -26,28 +26,64 @@ public class OrderDetail {
 
     public OrderDetail() {
     }
-
-    public OrderDetail(int orderDetailId, int orderId, int tableId) {
-        this.orderDetailId = orderDetailId;
-        this.orderId = orderId;
-        this.tableId = tableId;
+    
+    private OrderDetail(Builder builder) {
+        this.orderDetailId = builder.orderDetailId;
+        this.orderId = builder.orderId;
+        this.tableId = builder.tableId;
+        this.dishId = builder.dishId;
+        this.dishName = builder.dishName;
+        this.quantity = builder.quantity;
+        this.price = builder.price;
     }
 
-    public OrderDetail(int orderDetailId, int orderId, int tableId, int dishId, String dishName, int quantity, int price) {
-        this(orderDetailId, orderId, tableId);
-        this.dishId = dishId;
-        this.dishName = dishName;
-        this.quantity = quantity;
-        this.price = price;
-    }
+     public static class Builder {
+        private int orderDetailId;
+        private int orderId;
+        private int tableId;
+        private int dishId;
+        private String dishName;
+        private int quantity;
+        private int price;
 
-    public OrderDetail(int orderDetailId, int orderId, int tableId, int dishId, String dishName, int quantity, int price, 
-                       String status, LocalDateTime orderTime, String orderStatus, boolean urgent) {
-        this(orderDetailId, orderId, tableId, dishId, dishName, quantity, price);
-        this.status = status;
-        this.orderTime = orderTime;
-        this.orderStatus = orderStatus;
-        this.urgent = urgent;
+        public Builder orderDetailId(int orderDetailId) {
+            this.orderDetailId = orderDetailId;
+            return this;
+        }
+
+        public Builder orderId(int orderId) {
+            this.orderId = orderId;
+            return this;
+        }
+
+        public Builder tableId(int tableId) {
+            this.tableId = tableId;
+            return this;
+        }
+
+        public Builder dishId(int dishId) {
+            this.dishId = dishId;
+            return this;
+        }
+
+        public Builder dishName(String dishName) {
+            this.dishName = dishName;
+            return this;
+        }
+
+        public Builder quantity(int quantity) {
+            this.quantity = quantity;
+            return this;
+        }
+
+        public Builder price(int price) {
+            this.price = price;
+            return this;
+        }
+
+        public OrderDetail build() {
+            return new OrderDetail(this);
+        }
     }
 
     public int getOrderDetailId() {
