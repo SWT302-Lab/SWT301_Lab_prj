@@ -93,7 +93,9 @@ public class CashierManageServlet extends HttpServlet {
         String orderId_raw = request.getParameter("orderId");
         String dishId_raw = request.getParameter("dishId");
         String tableId_raw = request.getParameter("tableId");
-        int dishId, orderId, tableId;
+        int dishId;
+        int orderId;
+        int tableId;
         try {
             dishId = Integer.parseInt(dishId_raw);
             orderId = Integer.parseInt(orderId_raw);
