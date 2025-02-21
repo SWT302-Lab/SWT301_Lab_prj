@@ -9,8 +9,14 @@ package model;
  * @author TQT
  */
 public class SubOrder {
-    private int tableId, orderID, orderDetailId, dishId, quantity, price;
-    private String dishName, status;
+    private int tableId;
+    private int orderID;
+    private int orderDetailId;
+    private int dishId;
+    private int quantity;
+    private int price;
+    private String dishName;
+    private String status;
     private boolean urgent;
 
     public SubOrder() {
