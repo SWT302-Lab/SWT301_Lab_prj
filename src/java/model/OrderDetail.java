@@ -27,14 +27,23 @@ public class OrderDetail {
     public OrderDetail() {
     }
 
-    public OrderDetail(int orderDetailId, int orderId, int tableId, int dishId, String dishName, int quantity, int price, String status, LocalDateTime orderTime, String orderStatus, boolean urgent) {
+    public OrderDetail(int orderDetailId, int orderId, int tableId) {
         this.orderDetailId = orderDetailId;
         this.orderId = orderId;
         this.tableId = tableId;
+    }
+
+    public OrderDetail(int orderDetailId, int orderId, int tableId, int dishId, String dishName, int quantity, int price) {
+        this(orderDetailId, orderId, tableId);
         this.dishId = dishId;
         this.dishName = dishName;
         this.quantity = quantity;
         this.price = price;
+    }
+
+    public OrderDetail(int orderDetailId, int orderId, int tableId, int dishId, String dishName, int quantity, int price, 
+                       String status, LocalDateTime orderTime, String orderStatus, boolean urgent) {
+        this(orderDetailId, orderId, tableId, dishId, dishName, quantity, price);
         this.status = status;
         this.orderTime = orderTime;
         this.orderStatus = orderStatus;
