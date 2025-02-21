@@ -1,4 +1,4 @@
-<%-- 
+ <%-- 
     Document   : bill
     Created on : 27 thg 10, 2024, 01:09:04
     Author     : ADMIN
@@ -7,7 +7,7 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html>
+<html xml:lang>
     <head>
         <meta charset="UTF-8">
         <title>Payment Summary</title>
