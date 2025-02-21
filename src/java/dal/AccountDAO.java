@@ -36,6 +36,7 @@ public class AccountDAO extends DBContext {
         return null;
     }
 
+    
     public List<Account> getAll() {
         List<Account> list = new ArrayList<>();
         String sql = "SELECT * FROM Account";
@@ -46,7 +47,7 @@ public class AccountDAO extends DBContext {
                 list.add(a);
             }
         } catch (SQLException e) {
-            System.out.println(e);
+            LOGGER.log(Level.SEVERE, "Error while finding account by ID", e);
         }
         return list;
     }
