@@ -2,7 +2,7 @@ name: Build
 on:
   push:
     branches:
-      - Dong
+      - master
   pull_request:
     types: [opened, synchronize, reopened]
 jobs:
