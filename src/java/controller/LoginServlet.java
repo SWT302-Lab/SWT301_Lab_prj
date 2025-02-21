@@ -72,13 +72,13 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String errorMessage = "Username or password are incorrect";
+
         String formName = request.getParameter("formName");
         if ("form1".equals(formName)) {
             String username = request.getParameter("username");
             String password = request.getParameter("password");
             if (username.isEmpty() || username == null || password == null || password.isEmpty()) {
-
+                String errorMessage = "Username or password are incorrect";
                 response.sendRedirect("index.html?error="
                         + URLEncoder.encode(errorMessage, "UTF-8") + "&form=form1");
             }
@@ -91,6 +91,7 @@ public class LoginServlet extends HttpServlet {
             } else if ("cashier".equals(aO.getAccount(username, password))) {
                 response.sendRedirect("cashier");
             } else {
+                String errorMessage = "Username or password are incorrect";
                 response.sendRedirect("index.html?error="
                         + URLEncoder.encode(errorMessage, "UTF-8") + "&form=form1");
             }
@@ -98,6 +99,7 @@ public class LoginServlet extends HttpServlet {
             String username = request.getParameter("username");
             String password = request.getParameter("password");
             if (username.isEmpty() || username == null || password == null || password.isEmpty()) {
+                String errorMessage = "Username or password are incorrect";
                 response.sendRedirect("index.html?error="
                         + URLEncoder.encode(errorMessage, "UTF-8") + "&form=form2");
                 return;
@@ -109,6 +111,7 @@ public class LoginServlet extends HttpServlet {
                 session.setAttribute("username", username);
                 response.sendRedirect("admin.jsp");
             } else {
+                String errorMessage = "Username or password are incorrect";
                 response.sendRedirect("index.html?error="
                         + URLEncoder.encode(errorMessage, "UTF-8") + "&form=form2");
             }
