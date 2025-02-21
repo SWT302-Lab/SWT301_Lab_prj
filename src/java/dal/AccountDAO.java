@@ -39,9 +39,8 @@ public class AccountDAO extends DBContext {
     public List<Account> getAll() {
         List<Account> list = new ArrayList<>();
         String sql = "SELECT * FROM Account";
-        try {
-            PreparedStatement st = connection.prepareStatement(sql);
-            ResultSet rs = st.executeQuery();
+         try (PreparedStatement st = connection.prepareStatement(sql);
+            ResultSet rs = st.executeQuery()) {
             while (rs.next()) {
                 Account a = new Account(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4));
                 list.add(a);
