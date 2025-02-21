@@ -13,7 +13,9 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import java.util.logging.Logger;
 import java.util.List;
+import java.util.logging.Level;
 import model.OrderDetail;
 
 /**
@@ -32,6 +34,7 @@ public class CashierManageServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    private static final Logger logger = Logger.getLogger(CashierManageServlet.class.getName());
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -102,9 +105,15 @@ public class CashierManageServlet extends HttpServlet {
             tableId = Integer.parseInt(tableId_raw);
             OrderDetailDAO oddao = new OrderDetailDAO();
             oddao.confirm(dishId, orderId);
+            logger.log(Level.INFO, 
+                    "Order confirmed for dishId: {0}, orderId: {1}",
+                    new Object[]{dishId, orderId});
             response.sendRedirect("manage?tableID=" + tableId);
         } catch (NumberFormatException e) {
-            System.out.println(e);
+            logger.log(Level.SEVERE, 
+                    "Error parsing integers from request parameters", e);
+            response.sendError(HttpServletResponse.SC_BAD_REQUEST,
+                    "Invalid input");
         }
     }
 
