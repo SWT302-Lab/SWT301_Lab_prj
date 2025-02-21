@@ -36,7 +36,7 @@ public class LoginFilter implements Filter {
 
    
 
-    private void doAfterProcessing(ServletRequest request, ServletResponse response)
+    private void doAfterProcessing()
             throws IOException, ServletException {
         if (debug) {
             log("LoginFilter:DoAfterProcessing");
