@@ -19,7 +19,7 @@ import java.net.URLEncoder;
  * @author ADMIN
  */
 public class LoginServlet extends HttpServlet {
-    private final String ERRORMESS = "Username or password are incorrect";
+    
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -72,7 +72,7 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        String ERRORMESS = "Username or password are incorrect";
         String formName = request.getParameter("formName");
         if ("form1".equals(formName)) {
             String username = request.getParameter("username");
