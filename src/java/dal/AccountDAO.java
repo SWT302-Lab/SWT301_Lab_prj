@@ -22,8 +22,7 @@ public class AccountDAO extends DBContext {
     private static final Logger LOGGER = Logger.getLogger(AccountDAO.class.getName());
     public String getAccount(String username, String password) {
         String sql = "SELECT role FROM Account WHERE username = ? AND password = ?";
-        try {
-            PreparedStatement st = connection.prepareStatement(sql);
+        try (PreparedStatement st = connection.prepareStatement(sql)){
             st.setString(1, username);
             st.setString(2, password);
             try (ResultSet rs = st.executeQuery()) {
@@ -37,18 +36,18 @@ public class AccountDAO extends DBContext {
         return null;
     }
 
+    
     public List<Account> getAll() {
         List<Account> list = new ArrayList<>();
         String sql = "SELECT * FROM Account";
-        try {
-            PreparedStatement st = connection.prepareStatement(sql);
-            ResultSet rs = st.executeQuery();
+         try (PreparedStatement st = connection.prepareStatement(sql);
+            ResultSet rs = st.executeQuery()) {
             while (rs.next()) {
                 Account a = new Account(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4));
                 list.add(a);
             }
         } catch (SQLException e) {
-            System.out.println(e);
+            LOGGER.log(Level.SEVERE, "Error while finding account by ID", e);
         }
         return list;
     }
