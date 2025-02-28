@@ -25,6 +25,8 @@ import jakarta.servlet.http.HttpSession;
 public class LoginFilter implements Filter {
 
     private static final boolean DEBUG = true;
+   private static final String LIST_STAFF_JSP = "listStaff.jsp";
+
 
     // The filter configuration object we are associated with.  If
     // this value is null, this filter instance is not currently
@@ -36,7 +38,7 @@ public class LoginFilter implements Filter {
 
    
 
-    private void doAfterProcessing(ServletRequest request, ServletResponse response)
+    private void doAfterProcessing()
             throws IOException, ServletException {
         if (DEBUG) {
             log("LoginFilter:DoAfterProcessing");
@@ -79,31 +81,38 @@ public class LoginFilter implements Filter {
 
         // Lấy session hiện tại, nếu có
         HttpSession session = req.getSession(false);
-        String uri = req.getServletPath();
-        if (uri.endsWith(".jsp")
-                && !uri.endsWith("admin.jsp")
-                && !uri.endsWith("menu.jsp")
-                && !uri.endsWith("order.jsp")
-                && !uri.endsWith("listStaff.jsp")
-                && !uri.endsWith("cashier")
-                && !uri.endsWith("cashier.jsp")
-                && !uri.endsWith("addAccountandStaff.jsp")
-                && !uri.endsWith("createDish.jsp")
-                && !uri.endsWith("createTable.jsp")
-                && !uri.endsWith("cashierManage.jsp")
-                && !uri.endsWith("updateDish.jsp")
-                && !uri.endsWith("updateTable.jsp")
-                && !uri.endsWith("updateAccountandStaff.jsp")
-                && !uri.endsWith("tableID.jsp")
-                && !uri.endsWith("header.jsp")
-                && !uri.endsWith("footer.jsp")
-                && !uri.endsWith("bill.jsp")
-                && !uri.endsWith("continue.jsp")
-                && !uri.endsWith("listDish.jsp")
-                && !uri.endsWith("listTable.jsp")) {
-             // Code xử lý khi đường dẫn không hợp lệ
-                res.sendRedirect("index.html");
+       String uri = req.getServletPath();
+if (uri.endsWith(".jsp")
+        && !uri.endsWith("admin.jsp")
+        && !uri.endsWith("menu.jsp")
+        && !uri.endsWith("order.jsp")
+        && !uri.endsWith(LIST_STAFF_JSP) // Thay thế chuỗi trùng lặp
+        && !uri.endsWith("cashier")
+        && !uri.endsWith("cashier.jsp")
+        && !uri.endsWith("addAccountandStaff.jsp")
+        && !uri.endsWith("createDish.jsp")
+        && !uri.endsWith("createTable.jsp")
+        && !uri.endsWith("cashierManage.jsp")
+        && !uri.endsWith("updateDish.jsp")
+        && !uri.endsWith("updateTable.jsp")
+        && !uri.endsWith("updateAccountandStaff.jsp")) {
+    chain.doFilter(request, response);
+} else {
+    if (requestURI.endsWith("admin.jsp") || requestURI.endsWith("menu.jsp")
+            || requestURI.endsWith("order.jsp") || requestURI.endsWith(LIST_STAFF_JSP) // Thay thế chuỗi trùng lặp
+            || requestURI.endsWith("cashier.jsp")
+            || requestURI.endsWith("addAccountandStaff.jsp") || requestURI.endsWith("createDish.jsp")
+            || requestURI.endsWith("createTable.jsp") || requestURI.endsWith("cashierManage.jsp")
+            || requestURI.endsWith("updateDish.jsp") || requestURI.endsWith("updateTable.jsp")
+            || requestURI.endsWith("updateAccountandStaff.jsp") || requestURI.endsWith("tableID.jsp")
+            || requestURI.endsWith("header.jsp") || requestURI.endsWith("footer.jsp")
+            || requestURI.endsWith("bill.jsp") || requestURI.endsWith("continue.jsp")
+            || requestURI.endsWith("listDish.jsp") || requestURI.endsWith(LIST_STAFF_JSP) // Thay thế chuỗi trùng lặp
+            || requestURI.endsWith("listTable.jsp")) {
+        res.sendRedirect(loginURI);
+    }
         }
+	    }
         
         
         boolean isLoggedIn = (session != null && session.getAttribute("username") != null);

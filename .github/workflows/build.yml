@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - master
+      - Dong
   pull_request:
     types: [opened, synchronize, reopened]
 jobs:
