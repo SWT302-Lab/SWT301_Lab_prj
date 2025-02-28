@@ -38,7 +38,7 @@ public class LoginFilter implements Filter {
 
     private void doAfterProcessing(ServletRequest request, ServletResponse response)
             throws IOException, ServletException {
-        if (debug) {
+        if (DEBUG) {
             log("LoginFilter:DoAfterProcessing");
         }
 
@@ -166,7 +166,7 @@ public class LoginFilter implements Filter {
      */
     public void init(FilterConfig filterConfig) {
         this.filterConfig = filterConfig;
-        if (filterConfig != null && debug) {
+        if (filterConfig != null && DEBUG) {
 
                 log("LoginFilter:Initializing filter");
             
